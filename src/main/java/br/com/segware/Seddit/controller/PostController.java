@@ -30,12 +30,12 @@ public class PostController {
   }
 
   @PutMapping(path = "/{id}/upvote")
-  public Post upvote(@PathVariable String id) throws Exception {
+  public Integer upvote(@PathVariable String id) throws Exception {
     return postService.upvote(id);
   }
 
   @PutMapping(path = "/{id}/removeUpvote")
-  public Post removeUpvote(@PathVariable String id) throws Exception {
+  public Integer removeUpvote(@PathVariable String id) throws Exception {
     return postService.removeUpvote(id);
   }
 }

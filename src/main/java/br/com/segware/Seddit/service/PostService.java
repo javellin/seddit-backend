@@ -16,23 +16,24 @@ public class PostService {
   }
 
   public Post createPost(Post post) {
+    post.setUpvotes(0);
     return savePost(post);
   }
 
-  public Post upvote(String postId) throws Exception {
+  public Integer upvote(String postId) throws Exception {
     Post post = postRepository.findById(postId).orElseThrow(Exception::new);
 
     post.setUpvotes(post.getUpvotes() + 1);
 
-    return savePost(post);
+    return savePost(post).getUpvotes();
   }
 
-  public Post removeUpvote(String postId) throws Exception {
+  public Integer removeUpvote(String postId) throws Exception {
     Post post = postRepository.findById(postId).orElseThrow(Exception::new);
 
     post.setUpvotes(post.getUpvotes() - 1);
 
-    return savePost(post);
+    return savePost(post).getUpvotes();
   }
 
   private Post savePost(Post post) {
